@@ -1,5 +1,7 @@
 # DIY Practice and Alternative Sites for Music Exhibition
 online exhibition
-hey whats up
 
-this is no place for jokes
+| Group  | Piece |
+| ------------- | ------------- |
+| Tom D., Tom B., Cecilia | First-person explorable 3D Room  |
+| etc...  | etc...  |
