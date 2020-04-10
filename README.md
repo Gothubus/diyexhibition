@@ -2,6 +2,6 @@
 online exhibition
 
 | Group  | Piece | Media/Materials |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 | Tom D., Tom B., Cecilia | First-person explorable 3D Room  | Audio, Images for textures, Scripts |
 | etc...  | etc...  | etc... |
