@@ -1,2 +1,2 @@
-# diyexhibition
-online diy exhibition
+# DIY Practice and Alternative Sites for Music Exhibition
+online exhibition
