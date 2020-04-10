@@ -37,6 +37,7 @@ button:active{
 .menu a{
   text-decoration:none;
   font-size:30pt;
+  color:#000;
 }
 
 .menu li{
