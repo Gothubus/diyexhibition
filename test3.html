@@ -12,9 +12,10 @@
   </head>
   <body>
 		<a class="back" href="/diyexhibition/homepage.html">back</a>
-    <script src="js/three.js"></script>
-		<script>
-			// Our Javascript will go here.
+    <script type="module">
+			import * as THREE from "/build/three.module.js";
+			import { PointerLockControls } from "/js/PointerLockControls.js";
+			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x495261);
       var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -22,33 +23,110 @@
       var renderer = new THREE.WebGLRenderer();
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
-      var geometry = new THREE.BoxGeometry();
-      var material = new THREE.MeshBasicMaterial( { color: 0x4287F5 } );
-      var cube = new THREE.Mesh( geometry, material );
-      var v = 0;
-      scene.add( cube );
+      
+      var controls=new PointerLockControls(camera,document.body);
+      
+      var forward=0;
+      var sideways=0;
+      var speed=0.05;
+			
+			function keyPress(event){
+		    switch(event.keyCode){
+		      case 87:
+		        forward=1;
+		        break;
+	        case 83:
+		        forward=-1;
+		        break;
+	        case 65:
+		        sideways=-1;
+		        break;
+	        case 68:
+		        sideways=1;
+		        break;
+		    }
+			}
+			
+			function keyRelease(event){
+		    switch(event.keyCode){
+		      case 87:
+		        forward=0;
+		        break;
+	        case 83:
+		        forward=0;
+		        break;
+	        case 65:
+		        sideways=0;
+		        break;
+	        case 68:
+		        sideways=0;
+		        break;
+		    }
+			}
+			
+		  document.addEventListener("keydown",keyPress,false);
+		  document.addEventListener("keyup",keyRelease,false);
+		  document.addEventListener("click",function(){controls.lock();},false);
+      
+      var material1=new THREE.MeshPhongMaterial({color:0x4287F5});
+      var material2=new THREE.MeshPhongMaterial({color:0x0de046});
+      var material3=new THREE.MeshPhongMaterial({color:0x2d0de0});
+      var material4=new THREE.MeshPhongMaterial({color:0xff73dc});
+      var material5=new THREE.MeshPhongMaterial({color:0xf3ff73});
+      var wallGeo=new THREE.PlaneGeometry(5,2);
+      var floorGeo=new THREE.PlaneGeometry(5,5);
+      var wall1=new THREE.Mesh(wallGeo,material1);
+      var wall2=new THREE.Mesh(wallGeo,material2);
+      var wall3=new THREE.Mesh(wallGeo,material3);
+      var wall4=new THREE.Mesh(wallGeo,material4);
+      var floor=new THREE.Mesh(floorGeo,material5);
+      var ceiling=new THREE.Mesh(floorGeo,material5);
+      
+      var light=new THREE.PointLight(0xFFFFFF,0.2);
+      
+      scene.add(wall1);
+      scene.add(wall2);
+      scene.add(wall3);
+      scene.add(wall4);
+      scene.add(floor);
+      scene.add(ceiling);
+      scene.add(light);
+      scene.add(controls.getObject());
       
       camera.position.x = 0;
       camera.position.y = 0;
-      camera.position.z = 5;
-            
-      function animate() {
+      camera.position.z = 2.5;
+      
+      wall2.rotation.y=Math.PI/2;
+      wall2.position.x=-2.5;
+      wall2.position.z=2.5;
+      
+      wall3.rotation.y=-Math.PI/2;
+      wall3.position.x=2.5;
+      wall3.position.z=2.5;
+      
+      wall4.rotation.y=Math.PI;
+      wall4.position.z=5;
+      
+      floor.rotation.x=-Math.PI/2;
+      floor.position.y=-1;
+      floor.position.z=2.5;
+      
+      ceiling.rotation.x=Math.PI/2;
+      ceiling.position.y=1;
+      ceiling.position.z=2.5;
+      
+      function animate(){
       	requestAnimationFrame( animate );
-      	cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        var buzz = 10;
-        var buzz2 = 9;
-        var smol = 0.015;
-        v += 0.1;
-        cube.position.x = Math.sin(v*buzz2)*smol;
-        cube.position.y = Math.sin(v*buzz)*smol;
-        
-        console.log(v);
-        
-        
       	renderer.render( scene, camera );
+        controls.moveForward(forward*speed);
+        controls.moveRight(sideways*speed);
+        camera.position.x=Math.min(Math.max(camera.position.x,-2.3,),2.3);
+        camera.position.z=Math.min(Math.max(camera.position.z,0.2,),4.8);
+        light.position.set(camera.position.x,camera.position.y,camera.position.z);
       }
-        animate();
+      
+      animate();
 		</script>
   </body>
 </html>
