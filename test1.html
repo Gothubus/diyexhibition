@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIYexhibition</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <script>
+      function resizeVideo() {
+        var w=window.innerWidth*0.6;
+        var h=(w/16)*9;
+        document.getElementById("video").height=h;
+      }
+    </script>
+  </head>
+  <body onload="resizeVideo()" onresize="resizeVideo()">
+    <iframe id="video"
+      src="https://www.youtube.com/embed/GDwVXxYbLeM?autoplay=1&modestbranding=1">
+    </iframe>
+    <a class="back" href="/homepage.html">back</a>
+  </body>
+</html>

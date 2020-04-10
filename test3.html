@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIYexhibition</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+  </head>
+  <body>
+		<a class="back" href="/homepage.html">back</a>
+    <script src="js/three.js"></script>
+		<script>
+			// Our Javascript will go here.
+			var scene = new THREE.Scene();
+			scene.background = new THREE.Color(0x495261);
+      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+      var geometry = new THREE.BoxGeometry();
+      var material = new THREE.MeshBasicMaterial( { color: 0x4287F5 } );
+      var cube = new THREE.Mesh( geometry, material );
+      var v = 0;
+      scene.add( cube );
+      
+      camera.position.x = 0;
+      camera.position.y = 0;
+      camera.position.z = 5;
+            
+      function animate() {
+      	requestAnimationFrame( animate );
+      	cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        var buzz = 10;
+        var buzz2 = 9;
+        var smol = 0.015;
+        v += 0.1;
+        cube.position.x = Math.sin(v*buzz2)*smol;
+        cube.position.y = Math.sin(v*buzz)*smol;
+        
+        console.log(v);
+        
+        
+      	renderer.render( scene, camera );
+      }
+        animate();
+		</script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIYexhibition</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <script>
+      var auto=0;
+      var inter;
+      
+      function positionImage(){
+        var p=String(window.innerWidth/2-250)+"px";
+        document.getElementById("wrap").style.left=p;
+      }
+      
+      function changeImage(){
+        var ind=String(Math.floor(Math.random()*11))
+        if(ind.length==1){
+          ind="0"+ind;
+        }
+        document.getElementById("image").src="/images/"+ind+".jpg";
+      }
+      
+      function changeButton(){
+        if(!auto){
+          document.getElementById("switch").style.color="#cfe1ff";
+          document.getElementById("switch").style.backgroundColor="yellow";
+          auto=1;
+          inter=setInterval(changeImage,1000);
+        }
+        else{
+          document.getElementById("switch").style.color="yellow";
+          document.getElementById("switch").style.backgroundColor="#cfe1ff";
+          auto=0;
+          clearInterval(inter);
+        }
+      }
+    </script>
+  </head>
+  <body onload="positionImage()" onresize="positionImage()">
+    <a class="back" href="/homepage.html">back</a>
+    <div id="wrap" class="imagePiece">
+      <img onclick="changeImage()" id="image" src="/images/00.jpg" width="500" height="500">
+    </div>
+    <button onclick="changeButton()" id="switch">auto</button>
+  </body>
+</html>
