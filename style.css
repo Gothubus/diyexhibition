@@ -68,6 +68,10 @@ button:active{
   top:15%
 }
 
+a{
+  color: #000;
+}
+
 a:visited{
   color: #000;
 }
