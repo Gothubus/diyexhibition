@@ -16,7 +16,7 @@
           document.getElementById("description").innerHTML=this.responseText;
         }
       };
-      var file="diyexhibition/descriptions/descript0"+String(ind)+".txt";
+      var file="/diyexhibition/descriptions/descript0"+String(ind)+".txt";
       loadDes.open("GET",file,true);
       loadDes.send();
     }
