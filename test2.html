@@ -19,7 +19,7 @@
         if(ind.length==1){
           ind="0"+ind;
         }
-        document.getElementById("image").src="/images/"+ind+".jpg";
+        document.getElementById("image").src="/diyexhibition/images/"+ind+".jpg";
       }
       
       function changeButton(){
@@ -41,7 +41,7 @@
   <body onload="positionImage()" onresize="positionImage()">
     <a class="back" href="/homepage.html">back</a>
     <div id="wrap" class="imagePiece">
-      <img onclick="changeImage()" id="image" src="/images/00.jpg" width="500" height="500">
+      <img onclick="changeImage()" id="image" src="/diyexhibition/images/00.jpg" width="500" height="500">
     </div>
     <button onclick="changeButton()" id="switch">auto</button>
   </body>
