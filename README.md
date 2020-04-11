@@ -31,7 +31,9 @@ These are just some hypothetical examples based on what I imagine people might d
 
 Yes you can and if you want to do that and need help getting it going then we'll happily show you how.
 
+#### What is the url for the site?
 
+At the moment it's https://gothubus.github.io/diyexhibition/ but it will be possible to change this to an appropriate custom domain name later on. The reason we haven't yet is because domain names cost money (not a huge amount) and we don't even have people's work on the site yet. Once this has a bit more traction we can look into changing it and maybe goldsmiths will cover the cost of renting out a domain (maybe, if not it's only about £10ish which I imagine could be scrounged together between 30 or so people).
 
 ##### Thanks for reading and join the discord and fill out the table below before you do anything else :) - Tom D.
 
