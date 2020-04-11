@@ -43,6 +43,10 @@ At the moment it's https://gothubus.github.io/diyexhibition/ but it will be poss
 
 It's placeholder text so we can see what the website will look like once there is text on there.
 
+#### How do I fill out the table?
+
+Once you're on the discord we'll get your github sorted and then you can edit this very file which you are currently reading in order to fill out the table (there will be a little pencil symbol in the top right of this text box).
+
 ##### Thanks for reading, join the discord and fill out the table below before you do anything else :) - Tom D.
 
 ### Groups and their pieces
