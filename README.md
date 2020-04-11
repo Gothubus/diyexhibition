@@ -3,5 +3,5 @@ online exhibition
 
 | Group  | Piece | Media/Materials | User Interactivity |
 | ------------- | ------------- | ------------- | ------------- |
-| Tom D., Tom B., Cecilia | First-person explorable 3D Room  | Audio, Images for textures, Scripts | Yes - Keyboard/Mouse Input |
+| Tom D., Tom B., Cecilia | First-person explorable 3D room  | Audio, images for textures, scripts | Yes - keyboard/mouse input |
 | etc...  | etc...  | etc... | etc... |
