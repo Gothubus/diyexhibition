@@ -18,7 +18,7 @@
 			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x495261);
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
       
       var renderer = new THREE.WebGLRenderer();
       renderer.setSize( window.innerWidth, window.innerHeight );
@@ -29,6 +29,8 @@
       var forward=0;
       var sideways=0;
       var speed=0.05;
+      
+      var context=false;
 			
 			function keyPress(event){
 		    switch(event.keyCode){
@@ -64,10 +66,11 @@
 		    }
 			}
 			
-		  document.addEventListener("keydown",keyPress,false);
-		  document.addEventListener("keyup",keyRelease,false);
-		  document.addEventListener("click",function(){controls.lock();},false);
-      
+			document.addEventListener("keydown",keyPress);
+			document.addEventListener("keyup",keyRelease);
+			document.addEventListener("click",function(){controls.lock();});
+			document.addEventListener("click",audio);
+
       var material1=new THREE.MeshPhongMaterial({color:0x4287F5});
       var material2=new THREE.MeshPhongMaterial({color:0x0de046});
       var material3=new THREE.MeshPhongMaterial({color:0x2d0de0});
@@ -115,6 +118,52 @@
       ceiling.rotation.x=Math.PI/2;
       ceiling.position.y=1;
       ceiling.position.z=2.5;
+      
+      function audio(){
+				if(!context){
+					var listener=new THREE.AudioListener();
+					camera.add(listener);
+					var audioLoader=new THREE.AudioLoader();
+
+					var sound1=new THREE.PositionalAudio(listener);
+					audioLoader.load("sounds/fifths.wav",function(buffer){
+						sound1.setBuffer(buffer);
+						sound1.setLoop(true);
+						sound1.setVolume(0.4);
+						sound1.play();
+					});
+					wall1.add(sound1);
+
+					var sound2=new THREE.PositionalAudio(listener);
+					audioLoader.load("sounds/wind.wav",function(buffer){
+						sound2.setBuffer(buffer);
+						sound2.setLoop(true);
+						sound2.setVolume(0.4);
+						sound2.play();
+					});
+					wall2.add(sound2);
+
+					var sound3=new THREE.PositionalAudio(listener);
+					audioLoader.load("sounds/voice.wav",function(buffer){
+						sound3.setBuffer(buffer);
+						sound3.setLoop(true);
+						sound3.setVolume(0.2);
+						sound3.play();
+					});
+					wall3.add(sound3);
+
+					var sound4=new THREE.PositionalAudio(listener);
+					audioLoader.load("sounds/tape.wav",function(buffer){
+						sound4.setBuffer(buffer);
+						sound4.setLoop(true);
+						sound4.setVolume(0.3);
+						sound4.play();
+					});
+					wall4.add(sound4);
+
+					context=true;
+		  	}
+	  	}
       
       function animate(){
       	requestAnimationFrame( animate );
