@@ -33,7 +33,7 @@ Yes you can and if you want to do that and need help getting it going then we'll
 
 
 
-Thanks for reading and join the discord and fill out the table below before you do anything else :) - Tom D.
+##### Thanks for reading and join the discord and fill out the table below before you do anything else :) - Tom D.
 
 ### Groups and their pieces
 
