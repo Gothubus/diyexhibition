@@ -1,5 +1,7 @@
 # DIY Practice and Alternative Sites for Music Exhibition
-online exhibition
+Welcome to the online exhibition site :)
+
+Discord link (join this to be added to the site) - https://discord.gg/xMDHf9E
 
 | Group  | Piece | Media/Materials | User Interactivity |
 | ------------- | ------------- | ------------- | ------------- |
