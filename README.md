@@ -43,7 +43,7 @@ At the moment it's https://gothubus.github.io/diyexhibition/ but it will be poss
 
 It's placeholder text so we can see what the website will look like once there is text on there.
 
-##### Thanks for reading and join the discord and fill out the table below before you do anything else :) - Tom D.
+##### Thanks for reading, join the discord and fill out the table below before you do anything else :) - Tom D.
 
 ### Groups and their pieces
 
