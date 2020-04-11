@@ -1,5 +1,5 @@
 # DIY Practice and Alternative Sites for Music Exhibition
-Welcome to the alternative site for exhibitions!
+Welcome to the diy alternative site for diy practice and alternative sites for music!
 
 Discord link (join this to be added to the site) - https://discord.gg/xMDHf9E
 
