@@ -55,3 +55,7 @@ Once you're on the discord we'll get your github sorted and then you can edit th
 | ------------- | ------------- | ------------- | ------------- |
 | Tom D., Tom B., Cecilia | First-person explorable 3D room  | Audio, images for textures, scripts | Yes - keyboard/mouse input |
 | Neda., Louise., Delphi., Lucy., Dottie | Audio-visual Video | etc... | etc... |
+
+[//]: # (ADDING A NEW ENTRY TO THE TABLE: Use the '|' key as seperators for each column)
+
+|etc... |etc... |etc... |etc...|
