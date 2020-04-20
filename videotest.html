@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Local Host</title>
+	</head>
+	<body onclick="init(5);this.onclick=null;">
+		<h1>click me :)</h1>
+		<script>
+			var videos=[];
+			
+			function init(ind){
+				for(var i=0;i<ind;i++){
+					videos[i]=document.createElement('video');
+					videos[i].id='video'+String(ind);
+					videos[i].width="300";
+					videos[i].volume=0.3;
+					videos[i].setAttribute("onended","rand("+String(i)+")");
+					document.body.appendChild(videos[i]);
+					rand(i);
+				}
+			};
+			
+			function rand(ind){
+				var index=Math.floor(Math.random()*11);
+				//~ var video=document.getElementById("video"+String(ind));
+				videos[ind].src="videos/"+String(index)+".mp4";
+				videos[ind].play();
+			};
+		</script>
+	</body>
+</html>
