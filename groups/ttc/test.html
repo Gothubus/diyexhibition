@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    		<meta charset="UTF-8">
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    		<title>DIYexhibition</title>
+    		<link href="style.css" rel="stylesheet" type="text/css" media="all">
+    		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<script type="module">
+			import * as THREE from "./groups/ttc/build/three.module.js";
+			import {PointerLockControls} from "./groups/ttc/js/PointerLockControls.js";
+			import {GLTFLoader} from "./groups/ttc/js/GLTFLoader.js";
+			
+			var scene = new THREE.Scene();
+			scene.background = new THREE.Color(0x495261);
+			var camera = new THREE.PerspectiveCamera( 75,window.innerWidth/window.innerHeight,0.1,1000);
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			var controls=new PointerLockControls(camera,document.body);
+
+			var forward=0;
+			var sideways=0;
+			var speed=0.02;
+			
+			//initialise audio context
+			var context=false;
+			document.addEventListener("click",audio);
+			
+			//movement
+			function keyPress(event){
+				switch(event.keyCode){
+				  case 87:
+					forward=1;
+					break;
+				case 83:
+					forward=-1;
+					break;
+				case 65:
+					sideways=-1;
+					break;
+				case 68:
+					sideways=1;
+					break;
+				}
+			}
+			
+			function keyRelease(event){
+				switch(event.keyCode){
+					case 87:
+						forward=0;
+						break;
+					case 83:
+						forward=0;
+						break;
+					case 65:
+						sideways=0;
+						break;
+					case 68:
+						sideways=0;
+						break;
+				}
+			}
+			
+			//collision
+			var raycaster=new THREE.Raycaster();
+			var intersects;
+			var mouse= new THREE.Vector2();
+			var load=true;
+			function onMouseMove(event){
+				mouse.x=(event.clientX/window.innerWidth)*2-1;
+				mouse.y=-(event.clientY/window.innerHeight)*2+1;
+			}
+			
+			
+			document.addEventListener("mousemove",onMouseMove);
+			document.addEventListener("keydown",keyPress);
+			document.addEventListener("keyup",keyRelease);
+			document.addEventListener("click",function(){controls.lock();});
+			
+			
+			//geometery
+			var wallTexture=new THREE.MeshPhongMaterial({color:0x4287F5});
+			var floorTexture=new THREE.MeshPhongMaterial({color:0xf3ff73});
+			var wallGeo=new THREE.PlaneGeometry(5,2);
+			var floorGeo=new THREE.PlaneGeometry(5,5);
+			var walls=[];
+			for(var i=0;i<4;i++){
+				walls[i]=new THREE.Mesh(wallGeo,wallTexture);
+				walls[i].name="Wall";
+				scene.add(walls[i]);
+			}
+			var floor=new THREE.Mesh(floorGeo,floorTexture);
+			floor.name="floor";
+			floor.receiveShadow=true;
+			var ceiling=new THREE.Mesh(floorGeo,floorTexture);
+			ceiling.name="ceiling";
+			
+			var light=new THREE.PointLight(0xFFFFFF,0.8,12,4);
+			
+			scene.add(floor);
+			scene.add(ceiling);
+			scene.add(light);
+			scene.add(controls.getObject());
+			
+			walls[0].position.z=-2.5;
+			
+			walls[1].rotation.y=Math.PI/2;
+			walls[1].position.x=-2.5;
+
+			walls[2].rotation.y=-Math.PI/2;
+			walls[2].position.x=2.5;
+
+			walls[3].rotation.y=Math.PI;
+			walls[3].position.z=2.5;
+
+			floor.rotation.x=-Math.PI/2;
+			floor.position.y=-1;
+
+			ceiling.rotation.x=Math.PI/2;
+			ceiling.position.y=1;
+			
+			//model loading
+			var boxes=[];
+			var boundingBox=[];
+			var dist=1.75;
+			var scale=0.25;
+			var loader=new GLTFLoader();
+			for(let i=0;i<4;i++){
+				loader.load("./groups/ttc/models/box.glb",function(gltf){
+					boundingBox[i]=new THREE.Box3();
+					gltf.scene.scale.set(scale,scale,scale);
+					gltf.scene.position.set(-dist+((i%2)*dist*2),
+								-0.5,
+								-dist+Math.floor(i/2)*dist*2);
+					boxes[i]=gltf.scene;
+					scene.add(boxes[i]);
+					boundingBox[i].setFromObject(boxes[i]);
+				},undefined,function(error){
+					console.error(error);
+				});
+			}
+			
+			//audio
+			var sounds=[];
+			var soundFiles=["fifths","wind","voice","tape"];
+			function audio(){
+				if(!context){
+					var listener=new THREE.AudioListener();
+					camera.add(listener);
+					var audioLoader=new THREE.AudioLoader();
+					
+					for(let i=0;i<4;i++){
+						sounds[i]=new THREE.PositionalAudio(listener);
+						sounds[i].setRolloffFactor(5)
+						audioLoader.load("./groups/ttc/sounds/"+soundFiles[i]+".wav",
+						function(buffer){
+							sounds[i].setBuffer(buffer);
+							sounds[i].setLoop(true);
+							sounds[i].setVolume(0.4);
+							sounds[i].play();
+						});
+						boxes[i].add(sounds[i]);
+					}
+					context=true;
+				}
+			}
+			
+			var playerGeo=new THREE.BoxGeometry(0.25,1,0.25);
+			var player=new THREE.Mesh(playerGeo,wallTexture);
+			var playerCollider=new THREE.Box3();
+			scene.add(player);
+			
+			function animate(){
+				requestAnimationFrame( animate );
+				renderer.render( scene, camera );
+				
+				var prev=new THREE.Vector2(camera.position.x,camera.position.z);
+				
+				raycaster.setFromCamera(mouse,camera);
+				intersects=raycaster.intersectObjects(scene.children,true);
+				controls.moveForward(forward*speed);
+				controls.moveRight(sideways*speed);
+				
+				player.position.set(camera.position.x,-0.5,camera.position.z);
+				playerCollider.setFromObject(player);
+				
+				for(var i=0;i<boundingBox.length;i++){
+					if(playerCollider.intersectsBox(boundingBox[i])){
+						var inter=playerCollider.intersect(boundingBox[i]);
+						if(inter.max.z-inter.min.z>=inter.max.x-inter.min.x){
+							camera.position.x=prev.x;
+						}
+						if(inter.max.x-inter.min.x>=inter.max.z-inter.min.z){
+							camera.position.z=prev.y;
+						}
+					}
+				}
+				
+				camera.position.x=Math.min(Math.max(camera.position.x,-2.3,),2.3);
+				camera.position.z=Math.min(Math.max(camera.position.z,-2.3,),2.3);
+				light.position.set(camera.position.x,camera.position.y,camera.position.z);
+			}
+
+			animate();
+		</script>
+	</body>
+</html>
+

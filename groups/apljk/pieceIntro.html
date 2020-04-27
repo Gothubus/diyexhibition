@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+	
+	<script>
+	      function changeButton(){
+        if(!auto){
+          document.getElementById("switch").style.color="#cfe1ff";
+          document.getElementById("switch").style.backgroundColor="yellow";
+          auto=1;
+          inter=setInterval(changeImage,1000);
+        }
+        else{
+          document.getElementById("switch").style.color="yellow";
+          document.getElementById("switch").style.backgroundColor="#cfe1ff";
+          auto=0;
+          clearInterval(inter);
+        }
+      }
+    </script>
+  
+  </head>
+  
+  <body>
+	<div class="textpost">
+      <h1>about the piece</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rutrum, sapien non auctor aliquam, neque quam iaculis tellus, at mattis eros lorem in lectus. Aliquam id rhoncus arcu. Mauris a sodales lorem. Maecenas luctus aliquam dolor, nec aliquam tortor gravida vitae. Duis ullamcorper felis lacus, finibus placerat dolor maximus at. Sed lobortis, neque eget molestie volutpat, ligula ex convallis erat, at placerat turpis magna nec metus. Donec sagittis turpis ut sem dignissim, vel rhoncus ex consequat. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+		</p>
+    </div>
+	
+	<a href="./pieceName.html">
+	<button onclick="changeButton()" id="switch">enter piece</button>
+	</a>
+	
+  </body>
+  
+</html>
