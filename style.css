@@ -1,9 +1,5 @@
-/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
-   HTML content. To learn how to do something, just try searching Google for questions like
-   "how to change link color." */
-
 body{
-  background-color: #cfe1ff;
+  background-color: #ffffff;
   color: black;
   font-family: Helvetica;
 }
@@ -34,6 +30,34 @@ button:active{
   color:#cfe1ff;
 }
 
+.project-title {
+  font-size:40pt;
+  display: flex;
+}
+.project-author {
+  font-size:10pt;
+  display: flex;
+}
+
+.thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.thumbnails a {
+  width: 30%;
+  margin: 0px;
+  padding: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+.thumbnails a:nth-last-child(-n + 4) {
+  padding-bottom: 0 !important;
+}
+
+
 .menu a{
   text-decoration:none;
   font-size:30pt;
@@ -53,7 +77,7 @@ button:active{
 }
 
 .textpost{
-  position:absolute;
+  position:fixed;
   top:5px;
   width:30%;
   font-family:monospace;

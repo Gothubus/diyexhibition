@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIYexhibition</title>
-    <!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
-    <link href="/diyexhibition/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <link href="style.css" rel="stylesheet" type="text/css" media="all">
     <script>
     function displayDescript(ind){ 
       var loadDes=new XMLHttpRequest();
@@ -16,27 +14,80 @@
           document.getElementById("description").innerHTML=this.responseText;
         }
       };
-      var file="/diyexhibition/descriptions/descript0"+String(ind)+".txt";
+      var file="descriptions/descript0"+String(ind)+".txt";
       loadDes.open("GET",file,true);
       loadDes.send();
     }
     </script>
   </head>
   <body>
-    <div class="menu">
+<!--     <div class="menu">
       <ul>
-        <li><a onmouseover="displayDescript(1)" onmouseout="displayDescript(0)" href="/diyexhibition/videotest.html">VIDEO TEST</a></li>
-        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="/diyexhibition/test2.html">IMAGE TEST</a></li>
-        <li><a onmouseover="displayDescript(3)" onmouseout="displayDescript(0)" href="/diyexhibition/test3.html">GRAPHICS TEST</a></li>
-        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="/diyexhibition/test1.html">EMBED TEST</a></li>
-        <li><a onmouseover="displayDescript(4)" onmouseout="displayDescript(0)" href="/diyexhibition/test4.html">AUDIO TEST</a></li>
+        <li><a onmouseover="displayDescript(1)" onmouseout="displayDescript(0)" href="./videotest.html">VIDEO TEST</a></li>
+        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="./test2.html">IMAGE TEST</a></li>
+        <li><a onmouseover="displayDescript(3)" onmouseout="displayDescript(0)" href="./groups/ttc/test.html">GRAPHICS TEST</a></li>
+        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="./test1.html">EMBED TEST</a></li>
+        <li><a onmouseover="displayDescript(4)" onmouseout="displayDescript(0)" href="./test4.html">AUDIO TEST</a></li>
       </ul>
-    </div>
+    </div> -->
     
-    <div id="description" class="textpost" style="left:28%">
-    </div>
-    
-    <div class="textpost" style="left:64%">
+	<article class="thumbnails">
+	
+		<a href="./groups/apljk/pieceIntro.html">
+		<img src="./testImages/00.jpg">
+		<div class="project-title">piece 1 title</div>
+		<div class="project-author">by Adela Donoval, Joe Chilton, Louisa Mokadem, Pierre-Hugues Thenissen, Karolis Paulikas </div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/01.jpg">
+		<div class="project-title">ooof</div>
+		<div class="project-author">by Tom Drath, Cecilia Morgan, Tom Boutwood </div>
+		</a>
+		
+		<a href="./groups/nldld/pieceName.html">
+		<img src="./testImages/02.jpg">
+		<div class="project-title">piece 3 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/03.jpg">
+		<div class="project-title">piece 4 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/04.jpg">
+		<div class="project-title">piece 5 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/05.jpg">
+		<div class="project-title">piece 6 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/06.jpg">
+		<div class="project-title">piece 7 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/07.jpg">
+		<div class="project-title">piece 8 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/08.jpg">
+		<div class="project-title">piece 9 title</div>
+		</a>
+		
+		<a href="./groups/ttc/test.html">
+		<img src="./testImages/09.jpg">
+		<div class="project-title">piece 10 title</div>
+		</a>
+		
+	</article>
+   
+    <div class="textpost" style="left:67%; margin-right:10%">
       <h1>about the exhibition</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rutrum, sapien non auctor aliquam, neque quam iaculis tellus, at mattis eros lorem in lectus. Aliquam id rhoncus arcu. Mauris a sodales lorem. Maecenas luctus aliquam dolor, nec aliquam tortor gravida vitae. Duis ullamcorper felis lacus, finibus placerat dolor maximus at. Sed lobortis, neque eget molestie volutpat, ligula ex convallis erat, at placerat turpis magna nec metus. Donec sagittis turpis ut sem dignissim, vel rhoncus ex consequat. Interdum et malesuada fames ac ante ipsum primis in faucibus.

@@ -4,7 +4,7 @@
     		<meta charset="UTF-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<title>DIYexhibition</title>
-    		<link href="/diyexhibition/style.css" rel="stylesheet" type="text/css" media="all">
+    		<link href="style.css" rel="stylesheet" type="text/css" media="all">
     		<style>
 			body { margin: 0; }
 			canvas { display: block; }
@@ -12,9 +12,9 @@
 	</head>
 	<body>
 		<script type="module">
-			import * as THREE from "/diyexhibition/build/three.module.js";
-			import {PointerLockControls} from "/diyexhibition/js/PointerLockControls.js";
-			import {GLTFLoader} from "/diyexhibition/js/GLTFLoader.js";
+			import * as THREE from "./groups/ttc/build/three.module.js";
+			import {PointerLockControls} from "./groups/ttc/js/PointerLockControls.js";
+			import {GLTFLoader} from "./groups/ttc/js/GLTFLoader.js";
 			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x495261);
@@ -134,7 +134,7 @@
 			var scale=0.25;
 			var loader=new GLTFLoader();
 			for(let i=0;i<4;i++){
-				loader.load("models/box.glb",function(gltf){
+				loader.load("./groups/ttc/models/box.glb",function(gltf){
 					boundingBox[i]=new THREE.Box3();
 					gltf.scene.scale.set(scale,scale,scale);
 					gltf.scene.position.set(-dist+((i%2)*dist*2),
@@ -160,7 +160,7 @@
 					for(let i=0;i<4;i++){
 						sounds[i]=new THREE.PositionalAudio(listener);
 						sounds[i].setRolloffFactor(5)
-						audioLoader.load("sounds/"+soundFiles[i]+".wav",
+						audioLoader.load("./groups/ttc/sounds/"+soundFiles[i]+".wav",
 						function(buffer){
 							sounds[i].setBuffer(buffer);
 							sounds[i].setLoop(true);
