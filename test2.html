@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIYexhibition</title>
-    <link href="/diyexhibition/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
     <script>
       var auto=0;
       var inter;
@@ -19,7 +19,7 @@
         if(ind.length==1){
           ind="0"+ind;
         }
-        document.getElementById("image").src="/diyexhibition/images/"+ind+".jpg";
+        document.getElementById("image").src="./testImages/"+ind+".jpg";
       }
       
       function changeButton(){
@@ -39,9 +39,9 @@
     </script>
   </head>
   <body onload="positionImage()" onresize="positionImage()">
-    <a class="back" href="/diyexhibition/homepage.html">back</a>
+    <a class="back" href="./homepage.html">back</a>
     <div id="wrap" class="imagePiece">
-      <img onclick="changeImage()" id="image" src="/diyexhibition/images/00.jpg" width="500" height="500">
+      <img onclick="changeImage()" id="image" src="./testImages/00.jpg" width="500" height="500">
     </div>
     <button onclick="changeButton()" id="switch">auto</button>
   </body>
