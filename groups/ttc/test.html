@@ -4,7 +4,7 @@
     		<meta charset="UTF-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<title>DIYexhibition</title>
-    		<link href="style.css" rel="stylesheet" type="text/css" media="all">
+    		<link href="./style.css" rel="stylesheet" type="text/css" media="all">
     		<style>
 			body { margin: 0; }
 			canvas { display: block; }
@@ -12,9 +12,9 @@
 	</head>
 	<body>
 		<script type="module">
-			import * as THREE from "./groups/ttc/build/three.module.js";
-			import {PointerLockControls} from "./groups/ttc/js/PointerLockControls.js";
-			import {GLTFLoader} from "./groups/ttc/js/GLTFLoader.js";
+			import * as THREE from "/groups/ttc/build/three.module.js";
+			import {PointerLockControls} from "/groups/ttc/js/PointerLockControls.js";
+			import {GLTFLoader} from "/groups/ttc/js/GLTFLoader.js";
 			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x495261);
