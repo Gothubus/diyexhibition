@@ -6,32 +6,48 @@
     <title>DIYexhibition</title>
 
     <link href="style.css" rel="stylesheet" type="text/css" media="all">
-    <script>
-	function displayDescript(ind){ 
-		var loadDes=new XMLHttpRequest();
-		loadDes.onreadystatechange=function(){
-			if(this.readyState==4&&this.status==200){
-				document.getElementById("description").innerHTML=this.responseText;
-			}
-		};
-		var file="descriptions/descript0"+String(ind)+".txt";
-		loadDes.open("GET",file,true);
-		loadDes.send();
-	}
-	</script>
+<!--     <script>
+    function displayDescript(ind){ 
+      var loadDes=new XMLHttpRequest();
+      loadDes.onreadystatechange=function(){
+        if(this.readyState==4&&this.status==200){
+          document.getElementById("description").innerHTML=this.responseText;
+        }
+      };
+      var file="descriptions/descript0"+String(ind)+".txt";
+      loadDes.open("GET",file,true);
+      loadDes.send();
+    }
+    </script> -->
+	
+
+  
   </head>
-  <body>    
+  <body>
+<!--     <div class="menu">
+      <ul>
+        <li><a onmouseover="displayDescript(1)" onmouseout="displayDescript(0)" href="./videotest.html">VIDEO TEST</a></li>
+        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="./test2.html">IMAGE TEST</a></li>
+        <li><a onmouseover="displayDescript(3)" onmouseout="displayDescript(0)" href="./groups/ttc/test.html">GRAPHICS TEST</a></li>
+        <li><a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="./test1.html">EMBED TEST</a></li>
+        <li><a onmouseover="displayDescript(4)" onmouseout="displayDescript(0)" href="./test4.html">AUDIO TEST</a></li>
+      </ul>
+    </div> -->
+	
 	<article class="thumbnails">
 	
-		<a onmouseover="displayDescript(1)" onmouseout="displayDescript(0)" href="./groups/apljk/pieceIntro.html">
+		<a href="./groups/apljk/pieceIntro.html">
 		<img src="./testImages/00.jpg">
 		<div class="project-title">piece 1 title</div>
+		<div class ="project-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rutrum, sapien non auctor aliquam, neque quam iaculis tellus, at mattis eros lorem in lectus. Aliquam id rhoncus arcu. Mauris a sodales lorem. Maecenas luctus aliquam dolor, nec aliquam tortor gravida vitae. Duis ullamcorper felis lacus, finibus placerat dolor maximus at. Sed lobortis, neque eget molestie volutpat, ligula ex convallis erat, at placerat turpis magna nec metus. Donec sagittis turpis ut sem dignissim, vel rhoncus ex consequat. Interdum et malesuada fames ac ante ipsum primis in faucibus.</div>
 		<div class="project-author">by Adela Donoval, Joe Chilton, Louisa Mokadem, Pierre-Hugues Thenissen, Karolis Paulikas </div>
 		</a>
 		
-		<a onmouseover="displayDescript(2)" onmouseout="displayDescript(0)" href="./groups/ttc/test.html">
+		<a href="./groups/ttc/test.html">
 		<img src="./testImages/01.jpg">
 		<div class="project-title">ooof</div>
+		<div class ="project-desc"> blahblahblahblahblah  blah
+		blahblahblahblahblahblahblahvv blahblahblah</div>
 		<div class="project-author">by Tom Drath, Cecilia Morgan, Tom Boutwood </div>
 		</a>
 		
@@ -74,7 +90,7 @@
 		<img src="./testImages/09.jpg">
 		<div class="project-title">piece 10 title</div>
 		</a>
-		
+		<div class="cursor"></div>
 	</article>
    
     <div class="textpost" style="left:67%; margin-right:10%">
@@ -95,5 +111,9 @@
         Ut hendrerit tellus vel risus rhoncus, non mattis neque scelerisque. Mauris eget lacinia diam, nec lobortis risus. In hac habitasse platea dictumst. Aliquam sit amet suscipit tortor. Donec vitae erat nec lacus blandit suscipit quis non nunc. Aliquam quis lacus at neque vulputate placerat non eget sapien. Mauris ut lacus sed enim bibendum venenatis.
       </p>
     </div>
+	
+	<script src="jquery.js"></script>
+	<script src="hoverDesc.js"></script>
+	
   </body>
 </html>
