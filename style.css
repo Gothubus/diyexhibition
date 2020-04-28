@@ -30,13 +30,13 @@ button:active{
   color:#cfe1ff;
 }
 .cursor {
-  background-color: #cfe1ff;
-  width: 500px;
+  background-color: #ffffff;
+  width: 400px;
   position: absolute;
   text-decoration: none;
   color: #000000;
   font-family: 'Helvetica', sans-serif;
-  font-size: 12px;
+  font-size: 19px;
   font-weight: 90;
   text-align: left;
   pointer-events: none;
