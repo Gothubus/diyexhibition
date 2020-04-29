@@ -2,6 +2,7 @@ body{
   background-color: #ffffff;
   color: black;
   font-family: Helvetica;
+  overflow: hidden;
 }
 
 h1{
