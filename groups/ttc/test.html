@@ -104,29 +104,28 @@
 			var ceiling=new THREE.Mesh(floorGeo,floorTexture);
 			ceiling.name="ceiling";
 			
-			var light=new THREE.PointLight(0xFFFFFF,0.8,12,4);
+			var light=new THREE.PointLight(0xFFFFFF,1,7,4);
 			
 			scene.add(floor);
 			scene.add(ceiling);
 			scene.add(light);
 			scene.add(controls.getObject());
 			
-			walls[0].position.z=-2.5;
+			walls[0].position.set(0,1,-2.5);
 			
 			walls[1].rotation.y=Math.PI/2;
-			walls[1].position.x=-2.5;
+			walls[1].position.set(-2.5,1,0);
 
 			walls[2].rotation.y=-Math.PI/2;
-			walls[2].position.x=2.5;
+			walls[2].position.set(2.5,1,0);
 
 			walls[3].rotation.y=Math.PI;
-			walls[3].position.z=2.5;
+			walls[3].position.set(0,1,2.5);
 
 			floor.rotation.x=-Math.PI/2;
-			floor.position.y=-1;
 
 			ceiling.rotation.x=Math.PI/2;
-			ceiling.position.y=1;
+			ceiling.position.y=2;
 			
 			//model loading
 			var boxes=[];
@@ -160,7 +159,7 @@
 					for(let i=0;i<4;i++){
 						sounds[i]=new THREE.PositionalAudio(listener);
 						sounds[i].setRolloffFactor(5)
-						audioLoader.load("./sounds/"+soundFiles[i]+".wav",
+						audioLoader.load("sounds/"+soundFiles[i]+".wav",
 						function(buffer){
 							sounds[i].setBuffer(buffer);
 							sounds[i].setLoop(true);
@@ -189,7 +188,7 @@
 				controls.moveForward(forward*speed);
 				controls.moveRight(sideways*speed);
 				
-				player.position.set(camera.position.x,-0.5,camera.position.z);
+				player.position.set(camera.position.x,0.5,camera.position.z);
 				playerCollider.setFromObject(player);
 				
 				for(var i=0;i<boundingBox.length;i++){
