@@ -38,9 +38,12 @@
     <script type="text/javascript" src="/diyexhibition/js/instafeed.min.js"></script>
     <div id="instafeed"></div>
     <script type="text/javascript">
+      function changeDesc(){
+        console.log("working");
+      }
       var feed=new Instafeed({
         accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD',
-        template: '<script>function changeDesc(caption){console.log("working");document.getElementById("caption").innerHTML=caption;}</script><div><a href="{{link}}" onmouseover="changeDesc({{caption}})"><img src="{{image}}"/><div class="caption" id="caption"></div></a></div>'
+        template: '<div><a href="{{link}}" onmouseover="changeDesc()"><img src="{{image}}"/><div class="caption" id="caption"></div></a></div>'
       });
       feed.run();
     </script>
