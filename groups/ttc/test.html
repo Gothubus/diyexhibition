@@ -132,14 +132,13 @@
 			var boxes=[];
 			var boundingBox=[];
 			var models=["lamp","wardrobe","bed","chair"]
+			var coords=[[2,-2],[-1.9,-2.1],[1.8,1.7],[-2,2]];
 			var dist=1.75;
 			var loader=new GLTFLoader();
 			for(let i=0;i<4;i++){
 				loader.load("models/"+models[i]+".glb",function(gltf){
 					boundingBox[i]=new THREE.Box3();
-					gltf.scene.position.set(-dist+((i%2)*dist*2),
-								0,
-								-dist+Math.floor(i/2)*dist*2);
+					gltf.scene.position.set(coords[i][0],0,coords[i][1]);
 					boxes[i]=gltf.scene;
 					scene.add(boxes[i]);
 					boundingBox[i].setFromObject(boxes[i]);
