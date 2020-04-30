@@ -30,7 +30,10 @@
     <script type="text/javascript">
       var feed=new Instafeed({
         accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD',
-        template: '<a href="{{link}}"><img src="{{image}}" /><div>{{caption}}</div></a>'
+        template: '<a href="{{link}}">
+                    <img src="{{image}}" />
+                    <div style='position:absolute'>{{caption}}</div>
+                  </a>'
       });
       feed.run();
     </script>
