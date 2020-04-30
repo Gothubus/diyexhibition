@@ -131,15 +131,14 @@
 			//model loading
 			var boxes=[];
 			var boundingBox=[];
+			var models=["lamp","wardrobe","bed","chair"]
 			var dist=1.75;
-			var scale=0.25;
 			var loader=new GLTFLoader();
 			for(let i=0;i<4;i++){
-				loader.load("./models/box.glb",function(gltf){
+				loader.load("models/"+models[i]+".glb",function(gltf){
 					boundingBox[i]=new THREE.Box3();
-					gltf.scene.scale.set(scale,scale,scale);
 					gltf.scene.position.set(-dist+((i%2)*dist*2),
-								-0.5,
+								0,
 								-dist+Math.floor(i/2)*dist*2);
 					boxes[i]=gltf.scene;
 					scene.add(boxes[i]);
