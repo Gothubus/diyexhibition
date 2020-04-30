@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Test</title>
+    <style>
+      #instafeed{
+        display: block;
+        width:50%;
+        margin:auto;
+      }
+
+      #instafeed a img{
+        width: 100%;
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="./js/instafeed.min.js"></script>
+    <div id="instafeed"></div>
+    <script type="text/javascript">
+      var feed=new Instafeed({
+        accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD'
+      });
+      feed.run();
+    </script>
+  </body>
+</html>
