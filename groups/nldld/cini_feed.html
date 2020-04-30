@@ -7,7 +7,7 @@
     <style>
       body{
         display:block;
-        background-color:#d11154;
+        background-color:#f7bed6;
       }
     
       #instafeed{
@@ -31,8 +31,8 @@
       var feed=new Instafeed({
         accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD',
         template: '<a href="{{link}}">
-                    <img src="{{image}}" />
-                    <div style='position:absolute'>{{caption}}</div>
+                    <img src="{{image}}"/>
+                    <div>{{caption}}</div>
                   </a>'
       });
       feed.run();
