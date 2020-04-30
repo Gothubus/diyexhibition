@@ -89,8 +89,8 @@
 			
 			
 			//geometery
-			var wallTexture=new THREE.MeshPhongMaterial({color:0x4287F5});
-			var floorTexture=new THREE.MeshPhongMaterial({color:0xf3ff73});
+			var wallTexture=new THREE.MeshStandardMaterial({color:0x470000});
+			var floorTexture=new THREE.MeshStandardMaterial({color:0xf9f6e5});
 			var wallGeo=new THREE.PlaneGeometry(5,2);
 			var floorGeo=new THREE.PlaneGeometry(5,5);
 			var walls=[];
@@ -105,7 +105,7 @@
 			var ceiling=new THREE.Mesh(floorGeo,floorTexture);
 			ceiling.name="ceiling";
 			
-			var light=new THREE.PointLight(0xFFFFFF,1,7,4);
+			var light=new THREE.PointLight(0xFFFFFF,1.9,7,4);
 			
 			scene.add(floor);
 			scene.add(ceiling);
@@ -204,7 +204,7 @@
 				}
 				
 				camera.position.x=Math.min(Math.max(camera.position.x,-2.3,),2.3);
-				camera.position.z=Math.min(Math.max(camera.position.z,-2.3,),2.3);
+				camera.position.z=Math.min(Math.max(camera.position.z,-2.3,),3.5);
 				light.position.set(camera.position.x,camera.position.y,camera.position.z);
 			}
 
@@ -212,4 +212,3 @@
 		</script>
 	</body>
 </html>
-
