@@ -8,6 +8,8 @@
       body{
         display:block;
         background-color:#f7bed6;
+        font-family:monospace;
+        font-size:12px;
       }
     
       #instafeed{
@@ -15,7 +17,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-column-gap:0.5rem;
         grid-row-gap:0.5rem;
-        max-width:64rem;
+        max-width:63rem;
         margin:auto;
       }
     
@@ -24,7 +26,11 @@
       }
       
       .caption{
-        position:absolute; 
+        text-align:center;
+        position:absolute;
+        max-width:21rem;
+        transform:translate(0,-220px);
+        background-color:#f7bed6;
       }
     </style>
   </head>
