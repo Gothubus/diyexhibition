@@ -1,5 +1,5 @@
 body{
-  background-color: #000000;
+  background-color: #ffffff;
   color: black;
   font-family: Helvetica;
 }
@@ -14,10 +14,8 @@ h2{
 }
 
 button{
-  background-color: #000000;
+  background-color: #ffffff;
   color: yellow;
-  padding:8px 20px;
-  font-size:20px;
   position:absolute;
   left:50%;
   transform:translate(-50%);
