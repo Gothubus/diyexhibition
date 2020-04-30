@@ -26,30 +26,17 @@
 		</style>
 	
 		<script>
-			function changeButton(){
-				if(!auto){
-					document.getElementById("switch").style.color="#cfe1ff";
-					document.getElementById("switch").style.backgroundColor="yellow";
-					auto=1;
-					inter=setInterval(changeImage,1000);
-				}
-				else{
-					document.getElementById("switch").style.color="yellow";
-					document.getElementById("switch").style.backgroundColor="#cfe1ff";
-					auto=0;
-					clearInterval(inter);
-				}
-			}
-			
 			//display piece description
 			function displayDesc(ind){ 
+				var index=0;
 				var loadDes=new XMLHttpRequest();
 				loadDes.onreadystatechange=function(){
 					if(this.readyState==4&&this.status==200){
 						document.getElementById("desc").innerHTML=this.responseText;
 					}
 				};
-				var file="./descriptions/descript0"+String(ind)+".txt";
+				if(ind>0)index=Math.floor(Math.random()*5)+1;
+				var file="./descriptions/descript0"+String(index)+".txt";
 				loadDes.open("GET",file,true);
 				loadDes.send();
     	}
