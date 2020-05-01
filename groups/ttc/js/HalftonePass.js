@@ -8,9 +8,9 @@
 import {
 	ShaderMaterial,
 	UniformsUtils
-} from "/build/three.module.js";
+} from "/diyexhibition/groups/ttc/build/three.module.js";
 import { Pass } from "./Pass.js";
-import { HalftoneShader } from "/shaders/HalftoneShader.js";
+import { HalftoneShader } from "/diyexhibition/groups/ttc/shaders/HalftoneShader.js";
 
 var HalftonePass = function ( width, height, params ) {
 
