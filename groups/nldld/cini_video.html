@@ -1,47 +1,48 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body{
-        background-color:#e8bcc9;
-      }
-
-   .project-title {
-            font-size: 30pt;
-            text-align: center;
-            margin-bottom: 20px; 
+        body {
+            background-color: #e8bcc9;
         }
         
-    .project-desc {
+        .project-title {
+            font-size: 30pt;
+            text-align: center;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .project-desc {
             font-size: 18pt;
             text-align: center;
             margin-bottom: 20px;
         }
     </style>
 
-
     <script>
-      function resizeVideo() {
-        var w=window.innerWidth*0.6;
-        var h=(w/16)*9;
-        document.getElementById("video").height=h;
-      }
+        function resizeVideo() {
+            var w = window.innerWidth * 0.6;
+            var h = (w / 16) * 9;
+            document.getElementById("video").height = h;
+        }
     </script>
 
+</head>
 
-  </head>
+<body onload="resizeVideo()" onresize="resizeVideo()">
 
+    <h1><div class="project-title">comfort in isolation</div></h1>
 
-  <body onload="resizeVideo()" onresize="resizeVideo()">
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hldyhxa_GKI?controls=0&autoplay=1" style="display:block; margin:0 auto;" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
-    <div class"project-title">comfort in isolation</div>
-
-
-    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hldyhxa_GKI?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  
+    <div class="project-desc">
+        <a href="./cini_feed.html"> enter >> </a>
+    </div>
 
 </body>
+
 </html>
