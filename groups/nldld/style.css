@@ -1,0 +1,27 @@
+body{
+  background-color: #e8bcc9;
+  font-family: cambria;
+}
+        
+.project-title {
+  font-size: 30pt;
+  text-align: center;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.project-desc {
+  font-size: 18pt;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+iframe{
+  display:block;
+  margin:auto;
+  width:60%;
+}
+
+a{
+  color: #000;
+}
