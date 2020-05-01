@@ -29,6 +29,7 @@
 			var renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
+			var clock=new THREE.Clock();
 
 			var controls=new PointerLockControls(camera,document.body);
 
@@ -109,7 +110,7 @@
 			var ceiling=new THREE.Mesh(floorGeo,floorTexture);
 			ceiling.name="ceiling";
 			
-			var light=new THREE.PointLight(0xFFFFFF,1.9,7,4);
+			var light=new THREE.PointLight(0xFFFFFF,1.9,7,3);
 			
 			scene.add(floor);
 			scene.add(ceiling);
@@ -180,10 +181,31 @@
 			var player=new THREE.Mesh(playerGeo,wallTexture);
 			var playerCollider=new THREE.Box3();
 			scene.add(player);
+
+			//post processing
+			var composer, renderPass, halftonePass,params;
+			
+			composer=new EffectComposer(renderer);
+			renderPass=new RenderPass(scene,camera);
+			params={
+				shape: 1,
+				radius: 1,
+				rotateR: Math.PI/12,
+				rotateB: Math.PI/12*2,
+				rotateG: Math.PI/12*3,
+				scatter: 0.2,
+				blending: 0.8,
+				blendingMode: 1,
+				greyscale: false,
+				disable: false
+			};
+			halftonePass=new HalftonePass(window.innerWidth,window.innerHeight,params);
+			composer.addPass(renderPass);
+			composer.addPass(halftonePass);
 			
 			function animate(){
-				requestAnimationFrame( animate );
-				renderer.render( scene, camera );
+				requestAnimationFrame(animate);
+				var delta=clock.getDelta();
 				
 				var prev=new THREE.Vector2(camera.position.x,camera.position.z);
 				
@@ -210,6 +232,8 @@
 				camera.position.x=Math.min(Math.max(camera.position.x,-2.3,),2.3);
 				camera.position.z=Math.min(Math.max(camera.position.z,-2.3,),3.5);
 				light.position.set(camera.position.x,camera.position.y,camera.position.z);
+
+				composer.render(delta);
 			}
 
 			animate();
