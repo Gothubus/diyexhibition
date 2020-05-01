@@ -51,8 +51,9 @@ button:active{
 .back{
   font-family:monospace;
   position:fixed;
-  top:12%;
-  left:50%;
+  font-size:15pt;
+  top:1%;
+  left:45%;
 }
 
 .textpost{
