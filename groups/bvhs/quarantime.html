@@ -23,7 +23,13 @@
         font-family: monospace;
         padding-bottom:2%;
       }
-      
+      .back{
+  font-family:monospace;
+  position:fixed;
+  font-size:15pt;
+  top:1%;
+  left:45%;
+}
       #instafeed{
         display: block;
         width:50%;
@@ -38,6 +44,7 @@
   </head>
   <body>
     <script type="text/javascript" src="/diyexhibition/js/instafeed.min.js"></script>
+	<div class="back"><a href="../../homepage.html"> return to homepage </a></div>
     <h1>Just Having a Good Quarantime</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi laoreet leo nec diam eleifend blandit. Fusce varius augue sit amet urna cursus posuere. Curabitur molestie nibh ac ligula porttitor molestie. Sed in rhoncus erat. In ex mauris, sollicitudin eget libero ut, molestie blandit mi. Donec porta eleifend risus ut suscipit. Fusce non lectus dignissim, accumsan mi nec, ultrices nulla. Phasellus dapibus, metus pretium dignissim congue, nunc libero varius nisl, non feugiat tellus mi id tortor. Morbi in elementum purus, non laoreet leo. Praesent ut consequat justo. Nam urna tellus, elementum eget dolor non, placerat convallis diam. Duis non sapien consequat, aliquam tellus et, malesuada est. Etiam tellus est, pellentesque id est at, ullamcorper dictum risus. Etiam ultrices congue eros, vitae tincidunt tortor placerat vitae.</p>
     <div id="instafeed"></div>
@@ -46,6 +53,9 @@
         accessToken: 'IGQVJXcXVUVHVMMnI5M1Bqc2pkekZARWFdWODlVTGF1dDNQamZAJaHdDeDB5R2E3Nng1TEN6TWRFam5fODF3X2RSUTJPbzJ3LTN0VHQ3d1dPS2pyakFrZAUlpLWJiOWNEckRBWWl4SS13ZAFZAKM1VMdFpWZAQZDZD'
       });
       feed.run();
+	  
+	  
+	  
     </script>
   </body>
 </html>
