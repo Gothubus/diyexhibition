@@ -1,67 +1,55 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>comfort in isolation</title>
     <style>
-        body {
-            display: block;
-            background-color: #e8bcc9;
-        }
-        
-        #instafeed {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-column-gap: 0.5rem;
-            grid-row-gap: 0.5rem;
-            max-width: 63rem;
-            margin: auto;
-        }
-        
-        #instafeed img {
-            width: 100%;
-        }
-        
-        .project-title {
-            font-size: 30pt;
-            text-align: center;
-            margin-bottom: 20px; 
-        }
-        
-        .project-desc {
-            font-size: 18pt;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .caption {
-            text-align: center;
-            position: absolute;
-            max-width: 21rem;
-            transform: translate(0, -220px);
-            background-color: #f7bed6;
-        }
+      body{
+        display:block;
+        background-color:#e8bcc9;
+      }
+    
+      #instafeed{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap:0.5rem;
+        grid-row-gap:0.5rem;
+        max-width:63rem;
+        margin:auto;
+      }
+	  back{
+        font-size: 18pt;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    
+      #instafeed img {
+        width: 100%;
+      }
+      
+      .caption{
+        text-align:center;
+        position:absolute;
+        max-width:21rem;
+        transform:translate(0,-220px);
+        background-color:#f7bed6;
+      }
     </style>
-</head>
-
-<body>
-
-    <div class="project-title">comfort in isolation </div>
-    <div class="project-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-
+  </head>
+  <body>
+  <div class="back"><a href="../../homepage.html"> return to homepage </a></div> 
+  
     <script type="text/javascript" src="/diyexhibition/js/instafeed.min.js"></script>
     <div id="instafeed"></div>
     <script type="text/javascript">
-        function changeDesc() {
-            console.log("working");
-        }
-        var feed = new Instafeed({
-            accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD'
-        });
-        feed.run();
+      function changeDesc(){
+        console.log("working");
+      }
+      var feed=new Instafeed({
+        accessToken: 'IGQVJWTTFabFlKRjVWU2JfUmFUWTlDRDI3eF9Jckh6SzBYUWM2VHZA0WlVDMjRNNUoteWYzbDV6MlhJdmxnRVNMNm96X1JGX3MtNThyelRnY2NlYmN2cUV1RHFvaXBMZA240VTdSUTlGdlV1b2JhLTIwdQZDZD'
+      });
+      feed.run();
     </script>
-</body>
-
+  </body>
 </html>
