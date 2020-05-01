@@ -94,25 +94,34 @@
 			
 			
 			//geometery
-			var wallTexture=new THREE.MeshStandardMaterial({color:0x470000});
-			var floorTexture=new THREE.MeshStandardMaterial({color:0xf9f6e5});
-			var wallGeo=new THREE.PlaneGeometry(5,2);
 			var floorGeo=new THREE.PlaneGeometry(5,5);
+			var loader=new THREE.TextureLoader();
+			loader.load("/textures/woodfloorlores.jpg",(texture)=>{
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				texture.repeat.set( 4, 4 );
+				var floorTexture=new THREE.MeshPhongMaterial({
+					map: texture,
+				});
+				var floor=new THREE.Mesh(floorGeo,floorTexture);
+				floor.rotation.x=-Math.PI/2;
+				floor.name="floor";
+				scene.add(floor);
+			});
+			var wallTexture=new THREE.MeshPhongMaterial({color:0xb9dbb2});
+			var ceilingTexture=new THREE.MeshPhongMaterial({color:0xf2e3c4});
+			var wallGeo=new THREE.PlaneGeometry(5,2);
 			var walls=[];
 			for(var i=0;i<4;i++){
 				walls[i]=new THREE.Mesh(wallGeo,wallTexture);
 				walls[i].name="Wall";
 				scene.add(walls[i]);
 			}
-			var floor=new THREE.Mesh(floorGeo,floorTexture);
-			floor.name="floor";
-			floor.receiveShadow=true;
-			var ceiling=new THREE.Mesh(floorGeo,floorTexture);
+			var ceiling=new THREE.Mesh(floorGeo,ceilingTexture);
 			ceiling.name="ceiling";
 			
 			var light=new THREE.PointLight(0xFFFFFF,1.9,7,3);
-			
-			scene.add(floor);
+
 			scene.add(ceiling);
 			scene.add(light);
 			scene.add(controls.getObject());
@@ -127,8 +136,6 @@
 
 			walls[3].rotation.y=Math.PI;
 			walls[3].position.set(0,1,2.5);
-
-			floor.rotation.x=-Math.PI/2;
 
 			ceiling.rotation.x=Math.PI/2;
 			ceiling.position.y=2;
