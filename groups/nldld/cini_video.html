@@ -8,8 +8,18 @@
         background-color:#e8bcc9;
       }
     </style>
+    <script>
+      function resizeVideo() {
+        var w=window.innerWidth*0.6;
+        var h=(w/16)*9;
+        document.getElementById("video").height=h;
+      }
+    </script>
   </head>
-  <body>
-    <h1>Comfort In Isolation</h1>
+  <body onload="resizeVideo()" onresize="resizeVideo()">
+    <iframe id="video"
+      src="https://www.youtube.com/watch?v=hldyhxa_GKI&feature=youtu.be?autoplay=1&modestbranding=1">
+    </iframe>
+    <a class="back" href="./homepage.html">back</a>
   </body>
 </html>
