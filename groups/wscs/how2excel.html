@@ -59,8 +59,11 @@
     </div>-->
     <div id="player"></div>
       <script>
+        var isFullScreen=false;
+        
         function changeSize(){
-           document.getElementById("player").classList.add('fullscreen');
+           if(!isFullScreen)document.getElementById("player").classList.add('fullscreen');
+           else document.getElementById("player").classList.remove('fullscreen')
         }
         
         var tag = document.createElement('script');
