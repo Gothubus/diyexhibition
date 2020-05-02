@@ -67,10 +67,12 @@
              if(!isFullScreen){
                 document.getElementById("vid").classList.remove('video');
                 document.getElementById("vid").classList.add('fullscreen');
+                isFullScreen=true;
              }
              else{
                 document.getElementById("vid").classList.remove('fullscreen');
                 document.getElementById("vid").classList.add('video');
+                isFullScreen=false;
              }
           }
 
@@ -85,7 +87,7 @@
             player = new YT.Player('player', {
               height: '100%',
               width: '100%',
-              videoId: 'M7lc1UVf-VE',
+              videoId: '0zVTVJfAnw4',
               events: {
                 'onStateChange': onPlayerStateChange
               }
