@@ -82,7 +82,9 @@
         }
         
         function onPlayerStateChange(event) {
+          console.log("working");
           if (!event.data == YT.PlayerState.PLAYING) {
+            console.log("really working");
             changeSize();
           }
         }
