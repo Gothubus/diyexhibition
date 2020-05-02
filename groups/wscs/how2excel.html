@@ -47,19 +47,6 @@
           left: 0;
        }
     </style>
-    <script>
-        function resizeVideo() {
-            var w = window.innerWidth * 0.6;
-            var h = (w / 16) * 9;
-            document.getElementById("video").height = h;
-        }
-        
-        function changeSize(){
-           console.log("working");
-           document.getElementById("video").classList.remove('video');
-           document.getElementById("video").classList.add('fullscreen');
-        }
-    </script>
   </head>
 <body onload="resizeVideo()" onresize="resizeVideo()">
    <h1><div class="project-title">How to Excel</div></h1>
@@ -72,37 +59,34 @@
     </div>-->
     <div id="player"></div>
       <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
+        function changeSize(){
+           document.getElementById("player").classList.add('fullscreen');
+        }
+        
         var tag = document.createElement('script');
 
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
         var player;
         function onYouTubeIframeAPIReady() {
           player = new YT.Player('player', {
-            height: '390',
-            width: '640',
+            height: '34%',
+            width: '60%',
             videoId: 'M7lc1UVf-VE',
             events: {
               'onStateChange': onPlayerStateChange
             }
           });
         }
-
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
+        
         function onPlayerStateChange(event) {
-          if (event.data == YT.PlayerState.PLAYING && !done) {
-            setTimeout(stopVideo, 6000);
-            done = true;
+          if (!event.data == YT.PlayerState.PLAYING) {
+            changeSize();
           }
         }
+        
         function stopVideo() {
           player.stopVideo();
         }
