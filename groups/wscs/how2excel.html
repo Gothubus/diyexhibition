@@ -7,38 +7,38 @@
     <style>
         body{
           background-color: #e6edbe;
-          font-family: arial;
+          font-family: arial;;
+          text-align:center;
           display: block;
         }
 
         .project-title {
-          font-size: 30pt;
-          text-align: center;
+          font-size: 34pt;
           margin-bottom: 20px;
         }
 
         .project-desc{
           font-family: monospace;
+          font-size: 12pt;
+          width:70%;
+          margin:auto;
+        }
+        
+        .project-names{
+          font-family: monospace;
           color: blue;
           font-size: 11pt;
           width:70%;
           margin:auto;
-          text-align:center;
         }
 
         iframe{
           display:block;
           margin:auto;
-          width:60%;
+          width:70%;
           margin-bottom: 50px;
-        }
-
-        a{
-          color: #000;
-        }
-    
+        }    
     </style>
-
     <script>
         function resizeVideo() {
             var w = window.innerWidth * 0.6;
@@ -50,7 +50,7 @@
 <body onload="resizeVideo()" onresize="resizeVideo()">
    <h1><div class="project-title">How to Excel</div></h1>
 
-    <div class="project-desc">
+    <div class="project-names">
         <p>Scott MacDonald, Will Herman, Sasha Antoine, Cameron Chambers</p>
     </div>
     <iframe id="video" src="https://www.youtube.com/embed/0zVTVJfAnw4?controls=0&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
