@@ -313,8 +313,8 @@
 			THREE.DefaultLoadingManager.onProgress=function(){
 				if(!ready){
 					var ind=Math.floor((clock.getElapsedTime()*2)%3);
-					var prog=[" "," "," "];
-					prog[ind]=".";
+					var prog=["_","_","_"];
+					prog[ind]="☺";
 					var str="loading"+prog[0]+prog[1]+prog[2];
 					document.getElementById("progress").innerHTML=str;
 				}
