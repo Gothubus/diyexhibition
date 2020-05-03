@@ -192,7 +192,7 @@
 			//audio
 			var sounds=[];
 			
-			var soundFiles=["1","2","3","4","fifths","tape","wind"];
+			var soundFiles=["fifths","tape","wind","voices"];
 			function init(){
 				controls.lock();
 				if(ready){
@@ -201,7 +201,7 @@
 						camera.add(listener);
 						var audioLoader=new THREE.AudioLoader();
 						
-						for(let i=0;i<7;i++){
+						for(let i=0;i<4;i++){
 							sounds[i]=new THREE.PositionalAudio(listener);
 							sounds[i].setRolloffFactor(5)
 							audioLoader.load("sounds/"+soundFiles[i]+".wav",
