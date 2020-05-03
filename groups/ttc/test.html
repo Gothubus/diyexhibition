@@ -4,10 +4,22 @@
     		<meta charset="UTF-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<title>DIYexhibition</title>
-    		<link href="./style.css" rel="stylesheet" type="text/css" media="all">
+    		<!--<link href="./style.css" rel="stylesheet" type="text/css" media="all">-->
     		<style>
 			body { margin: 0; }
 			canvas { display: block; }
+			
+			.loadScreen{
+				position:fixed;
+				width:100vw;
+				height:100vh;
+				left:50%;
+				padding-top:20%;
+				transform:translate(-50%);
+				color:yellow;
+				text-align:center;
+			}
+		</style>
 		</style>
 	</head>
 	<body>
@@ -20,10 +32,9 @@
 			import {RenderPass} from './js/RenderPass.js';
 			import {HalftonePass} from './js/HalftonePass.js';
 			
-			
 			var scene = new THREE.Scene();
 			scene.background = new THREE.Color(0x495261);
-			var camera = new THREE.PerspectiveCamera( 75,window.innerWidth/window.innerHeight,0.1,1000);
+			var camera = new THREE.PerspectiveCamera( 75,window.innerWidth/window.innerHeight,0.05,1000);
 			camera.position.y=1.2;
 
 			var renderer = new THREE.WebGLRenderer();
@@ -39,7 +50,7 @@
 			
 			//initialise audio context
 			var context=false;
-			document.addEventListener("click",audio);
+			document.addEventListener("click",init);
 			
 			//movement
 			function keyPress(event){
@@ -79,25 +90,25 @@
 			//collision
 			var raycaster=new THREE.Raycaster();
 			var intersects;
-			var mouse= new THREE.Vector2();
-			var load=true;
+			var mouse=new THREE.Vector2();
+			var INTERSECTED;
 			function onMouseMove(event){
 				mouse.x=(event.clientX/window.innerWidth)*2-1;
 				mouse.y=-(event.clientY/window.innerHeight)*2+1;
 			}
-			
+				
 			
 			document.addEventListener("mousemove",onMouseMove);
 			document.addEventListener("keydown",keyPress);
 			document.addEventListener("keyup",keyRelease);
-			document.addEventListener("click",function(){controls.lock();});
+			document.addEventListener("click",function(){;});
 			
 			
 			//geometery
 			var floorGeo=new THREE.PlaneGeometry(5,5);
 			var rugGeo=new THREE.PlaneGeometry(3,1.5);
 			var loader=new THREE.TextureLoader();
-
+			
 			//floor texture
 			loader.load("./textures/woodfloorlores.jpg",(texture)=>{
 				texture.wrapS = THREE.RepeatWrapping;
@@ -111,7 +122,7 @@
 				floor.name="floor";
 				scene.add(floor);
 			});
-
+			
 			//rug texture
 			loader.load("./textures/ruglores.png",(texture)=>{
 				var rugTexture=new THREE.MeshPhongMaterial({
@@ -121,6 +132,7 @@
 				var rug=new THREE.Mesh(rugGeo,rugTexture);
 				rug.rotation.set(-Math.PI/2,0,Math.PI/2);
 				rug.position.y+=0.05;
+				rug.name="rug";
 				scene.add(rug);
 			});
 			
@@ -137,7 +149,7 @@
 			ceiling.name="ceiling";
 			
 			var light=new THREE.PointLight(0xFFFFFF,1.9,7,3);
-			light.position.set(0,1.2,0);
+			
 			scene.add(ceiling);
 			scene.add(light);
 			scene.add(controls.getObject());
@@ -153,14 +165,15 @@
 			walls[3].rotation.y=Math.PI;
 			walls[3].position.set(0,1,2.5);
 
+
 			ceiling.rotation.x=Math.PI/2;
 			ceiling.position.y=2;
 			
 			//model loading
 			var boxes=[];
 			var boundingBox=[];
-			var models=["lamp","wardrobe","bed","chair","desk","table","shelf"]
-			var coords=[[1.5,-2],[-1.9,-2.1],[1.8,1.7],[-2,2], [-2.1, 0],[0.7,2],[0.2,-2.4]];
+			var models=["lamp","wardrobe","bed","chair","desk","table","shelf","door"]
+			var coords=[[2.2,-2.1],[-1.9,-2.1],[1.8,1.7],[-2,2], [-2.1, 0],[0.7,2],[1.1,-2.4],[-0.4,-2.5]];
 			var dist=1.75;
 			var loader=new GLTFLoader();
 			for(let i=0;i<models.length;i++){
@@ -168,6 +181,7 @@
 					boundingBox[i]=new THREE.Box3();
 					gltf.scene.position.set(coords[i][0],0,coords[i][1]);
 					boxes[i]=gltf.scene;
+					boxes[i].name=models[i];
 					scene.add(boxes[i]);
 					boundingBox[i].setFromObject(boxes[i]);
 				},undefined,function(error){
@@ -177,26 +191,37 @@
 			
 			//audio
 			var sounds=[];
-			var soundFiles=["fifths","wind","voice","tape"];
-			function audio(){
-				if(!context){
-					var listener=new THREE.AudioListener();
-					camera.add(listener);
-					var audioLoader=new THREE.AudioLoader();
-					
-					for(let i=0;i<4;i++){
-						sounds[i]=new THREE.PositionalAudio(listener);
-						sounds[i].setRolloffFactor(5)
-						audioLoader.load("sounds/"+soundFiles[i]+".wav",
-						function(buffer){
-							sounds[i].setBuffer(buffer);
-							sounds[i].setLoop(true);
-							sounds[i].setVolume(0.4);
-							sounds[i].play();
-						});
-						boxes[i].add(sounds[i]);
+			
+			var soundFiles=["1","2","3","4","fifths","tape","wind"];
+			function init(){
+				controls.lock();
+				if(ready){
+					if(!context){
+						var listener=new THREE.AudioListener();
+						camera.add(listener);
+						var audioLoader=new THREE.AudioLoader();
+						
+						for(let i=0;i<7;i++){
+							sounds[i]=new THREE.PositionalAudio(listener);
+							sounds[i].setRolloffFactor(5)
+							audioLoader.load("sounds/"+soundFiles[i]+".wav",
+							function(buffer){
+								sounds[i].setBuffer(buffer);
+								sounds[i].setLoop(true);
+								if(i>3)sounds[i].setVolume(0.4);
+								else sounds[i].setVolume(1);
+								sounds[i].play();
+							});
+							boxes[i].add(sounds[i]);
+						}
+						context=true;
 					}
-					context=true;
+					document.getElementById("load").remove();
+					ready=false;
+					animate();
+				}
+				if(INTERSECTED.name=="Door"){
+					window.location.href="https://gothubus.github.io/diyexhibition/homepage.html";
 				}
 			}
 			
@@ -204,7 +229,7 @@
 			var player=new THREE.Mesh(playerGeo,wallTexture);
 			var playerCollider=new THREE.Box3();
 			scene.add(player);
-
+			
 			//post processing
 			var composer, renderPass, halftonePass,params;
 			
@@ -226,28 +251,52 @@
 			composer.addPass(renderPass);
 			composer.addPass(halftonePass);
 			
+			//animate function
 			function animate(){
 				requestAnimationFrame(animate);
 				var delta=clock.getDelta();
 				
-				var prev=new THREE.Vector2(camera.position.x,camera.position.z);
-				
+				//door interact
 				raycaster.setFromCamera(mouse,camera);
-				intersects=raycaster.intersectObjects(scene.children,true);
+				var intersects=raycaster.intersectObjects(scene.children,true);
+				if(intersects.length>0&&intersects[0].distance<0.8&&intersects[0].object.name=="Door"){
+					if(INTERSECTED!=intersects[0].object){
+						if(INTERSECTED)INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+						INTERSECTED=intersects[0].object;
+						INTERSECTED.currentHex=INTERSECTED.material.emissive.getHex();
+						INTERSECTED.material.emissive.setHex(0x665500);
+					}
+
+				} 
+				else{
+					if(INTERSECTED)INTERSECTED.material.emissive.setHex(INTERSECTED.currentHex);
+					INTERSECTED=null;
+				}
+				
+				
 				controls.moveForward(forward*speed);
 				controls.moveRight(sideways*speed);
 				
-				player.position.set(camera.position.x,0.7,camera.position.z);
+				player.position.set(camera.position.x,camera.position.y,camera.position.z);
 				playerCollider.setFromObject(player);
 				
 				for(var i=0;i<boundingBox.length;i++){
 					if(playerCollider.intersectsBox(boundingBox[i])){
 						var inter=playerCollider.intersect(boundingBox[i]);
+						var clip=0.1;
 						if(inter.max.z-inter.min.z>=inter.max.x-inter.min.x){
-							camera.position.x=prev.x;
+							if(Math.abs(camera.position.x-boundingBox[i].max.x)<
+							Math.abs(camera.position.x-boundingBox[i].min.x))
+							camera.position.x=Math.max(camera.position.x,boundingBox[i].max.x+clip);
+							else
+							camera.position.x=Math.min(camera.position.x,boundingBox[i].min.x-clip);
 						}
 						if(inter.max.x-inter.min.x>=inter.max.z-inter.min.z){
-							camera.position.z=prev.y;
+							if(Math.abs(camera.position.z-boundingBox[i].max.z)<
+							Math.abs(camera.position.z-boundingBox[i].min.z))
+							camera.position.z=Math.max(camera.position.z,boundingBox[i].max.z+clip);
+							else
+							camera.position.z=Math.min(camera.position.z,boundingBox[i].min.z-clip);
 						}
 					}
 				}
@@ -255,15 +304,35 @@
 				camera.position.x=Math.min(Math.max(camera.position.x,-2.3,),2.3);
 				camera.position.z=Math.min(Math.max(camera.position.z,-2.3,),2.3);
 				light.position.set(camera.position.x,camera.position.y,camera.position.z);
-
+				
 				composer.render(delta);
+				
 			}
-
-			animate();
+			
+			var ready=false;
+			THREE.DefaultLoadingManager.onProgress=function(){
+				if(!ready){
+					var ind=Math.floor((clock.getElapsedTime()*2)%3);
+					var prog=[" "," "," "];
+					prog[ind]=".";
+					var str="loading"+prog[0]+prog[1]+prog[2];
+					document.getElementById("progress").innerHTML=str;
+				}
+				console.log();
+			};
+				
+				
+			THREE.DefaultLoadingManager.onLoad=function(){
+				if(!ready){
+					document.getElementById("progress").innerHTML="click anyhwere to enter"
+					ready=true;
+				}
+			};
 		</script>
-
-	<div class="back"><a href="../../homepage.html"> return to homepage </a></div>
-
-
+		<div id="load" class="loadScreen">
+			<p>controls: wasd to move, mouse to look around</p>
+			<p>use the door to leave</p>
+			<p id="progress"></p>
+		</div>
 	</body>
 </html>
