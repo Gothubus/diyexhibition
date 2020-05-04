@@ -4,7 +4,6 @@
     		<meta charset="UTF-8">
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<title>DIYexhibition</title>
-    		<!--<link href="./style.css" rel="stylesheet" type="text/css" media="all">-->
     		<style>
 			body { margin: 0; }
 			canvas { display: block; }
@@ -169,6 +168,32 @@
 			ceiling.rotation.x=Math.PI/2;
 			ceiling.position.y=2;
 			
+			//audio
+			var soundstr,soundfiles=["wind","fifths","tape"];
+			var sounds=[];
+			var listener=new THREE.AudioListener();
+			camera.add(listener);
+			var audioLoader=new THREE.AudioLoader();
+			for(let i=0;i<9;i++){
+				sounds[i]=new THREE.PositionalAudio(listener);
+				if(i<6)soundstr="no"+(i+1);
+				else soundstr=soundfiles[i-6];
+				audioLoader.load("sounds/"+soundstr+".wav",
+				function(buffer){
+					sounds[i].setBuffer(buffer);
+					sounds[i].offset=Math.random()*buffer.duration;
+					sounds[i].setLoop(true);
+					if(i<6){
+						sounds[i].setVolume(1.4);
+						sounds[i].setRolloffFactor(10)
+					}
+					else{
+						sounds[i].setVolume(0.1);
+						sounds[i].setRolloffFactor(1.5);
+					}
+				});
+			}
+			
 			//model loading
 			var boxes=[];
 			var boundingBox=[];
@@ -182,6 +207,8 @@
 					gltf.scene.position.set(coords[i][0],0,coords[i][1]);
 					boxes[i]=gltf.scene;
 					boxes[i].name=models[i];
+					boxes[i].add(sounds[i]);
+					if(i<3)boxes[i].add(sounds[i+6]);
 					scene.add(boxes[i]);
 					boundingBox[i].setFromObject(boxes[i]);
 				},undefined,function(error){
@@ -189,37 +216,19 @@
 				});
 			}
 			
-			//audio
-			var sounds=[];
-			
-			var soundFiles=["fifths","tape","wind","voices"];
+			//initialisation
+			var playing=false;
 			function init(){
-				controls.lock();
 				if(ready){
-					if(!context){
-						var listener=new THREE.AudioListener();
-						camera.add(listener);
-						var audioLoader=new THREE.AudioLoader();
-						
-						for(let i=0;i<4;i++){
-							sounds[i]=new THREE.PositionalAudio(listener);
-							sounds[i].setRolloffFactor(5)
-							audioLoader.load("sounds/"+soundFiles[i]+".wav",
-							function(buffer){
-								sounds[i].setBuffer(buffer);
-								sounds[i].setLoop(true);
-								if(i>3)sounds[i].setVolume(0.4);
-								else sounds[i].setVolume(1);
-								sounds[i].play();
-							});
-							boxes[i].add(sounds[i]);
-						}
-						context=true;
+					for(var i=0;i<9;i++){
+						sounds[i].play();
 					}
 					document.getElementById("load").remove();
 					ready=false;
+					playing=true;
 					animate();
 				}
+				if(playing)controls.lock();
 				if(INTERSECTED.name=="Door"){
 					window.location.href="https://gothubus.github.io/diyexhibition/homepage.html";
 				}
