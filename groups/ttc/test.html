@@ -176,9 +176,9 @@
 			var audioLoader=new THREE.AudioLoader();
 			for(let i=0;i<9;i++){
 				sounds[i]=new THREE.PositionalAudio(listener);
-				if(i<6)soundstr="no"+(i+1);
-				else soundstr=soundfiles[i-6];
-				audioLoader.load("sounds/"+soundstr+".wav",
+				if(i<6)soundstr="no"+(i+1)+".mp3";
+				else soundstr=soundfiles[i-6]+".wav";
+				audioLoader.load("sounds/"+soundstr,
 				function(buffer){
 					sounds[i].setBuffer(buffer);
 					sounds[i].offset=Math.random()*buffer.duration;
@@ -331,12 +331,23 @@
 			};
 				
 				
+			var start;
 			THREE.DefaultLoadingManager.onLoad=function(){
 				if(!ready){
-					document.getElementById("progress").innerHTML="click anyhwere to enter"
+					start=(clock.getElapsedTime());
 					ready=true;
+					check();
 				}
 			};
+			
+			function check(){
+				if((clock.getElapsedTime()-start)>3){
+					document.getElementById("progress").innerHTML="click anyhwere to enter"
+					document.addEventListener("click",init);
+				}
+				else
+					setTimeout(check,50);
+			}
 		</script>
 		<div id="load" class="loadScreen">
 			<p>controls: wasd to move, mouse to look around</p>
