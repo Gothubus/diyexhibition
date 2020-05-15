@@ -6,51 +6,47 @@
     <title>this is your page now</title>
     <style>
       body{
-        background-color: green;
-        color:yellow;
-        font-family:monospace;
+        background-color: #f081ea;
+        font-family: arial;
+        display: block;
       }
-    </style>
-  </head>
-   <style>
-        body{
-          background-color: #f081ea;
-          font-family: arial;
-          display: block;
-        }
 
-        .project-title {
-          font-size: 30pt;
-          text-align: center;
-          margin-bottom: 20px;
-        }
+      .project-title {
+        font-size: 30pt;
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .project-desc {
-          font-size: 12pt;
-          text-align: center;
-          width:70%
-          margin:auto;
-        }
+      .project-desc {
+        font-size: 12pt;
+        text-align: center;
+        width:70%
+        margin:auto;
+      }
 
-        iframe{
-          display:block;
-          margin:auto;
-          width:60%;
-        }
+      iframe{
+        display:block;
+        margin:auto;
+        width:60%;
+        margin-bottom:10px;
+      }
 
-        a{
-          color: #000;
-        }
-    </style>
+      a{
+        color: #000;
+        text-decoration:none;
+      }
 
-    <script>
-        function resizeVideo() {
-            var w = window.innerWidth * 0.6;
-            var h = (w / 16) * 9;
-            document.getElementById("video").height = h;
-        }
-    </script>
-
+      a:hover{
+        color: #fff;
+      }
+  </style>
+  <script>
+      function resizeVideo() {
+          var w = window.innerWidth * 0.6;
+          var h = (w / 16) * 9;
+          document.getElementById("video").height = h;
+      }
+  </script>
 </head>
 
 <body onload="resizeVideo()" onresize="resizeVideo()">
